@@ -1,8 +1,7 @@
 import './static/App.css'
 import AddClothes from './addclothes';
-import Home from './home';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import Home from './homeCategory';
 function App() {
 
   return (

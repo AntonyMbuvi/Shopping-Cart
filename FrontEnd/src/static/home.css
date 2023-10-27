@@ -11,7 +11,11 @@
     color: antiquewhite;
     margin: 10px;
     padding: 20px;
-    border-radius: 20px;
+    border-radius: 30px;
+    height: 91vh;
+    width: 20%;
+    position: fixed;
+
 }
 .icon {
     height: 20px;
@@ -31,18 +35,57 @@
     flex-direction: row;
     gap: 10px;
 }
+
 .clothes {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 100px;
+   
+}
+.category {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    
+}
+.categorical-clothes {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 5%;
+    gap: 4%;
+}
+.main-shop {
     grid-column: 2/5;
     margin: 15px;
 }
-
+.search-bar {
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
+    border-radius: 5px;
+    
+}
+.search-input, .search-category{
+    width: 30%;
+    margin: 0;
+}
+.page-layout-icons {
+    display: flex;
+    justify-content: space-around;
+    gap: 20%;
+}
 img {
     border-radius: 5px;
     margin: 0;
     padding: 0;
+}
+.cloth-pic {
+    height: 300px;
+    width: 300px;
 }
 .cloth {
     padding: 0px;
@@ -52,6 +95,7 @@ img {
     font-style: italic;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     width: fit-content;
+    font-family: cursive;
     border-radius: 5px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
 

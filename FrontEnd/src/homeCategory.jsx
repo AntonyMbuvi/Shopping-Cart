@@ -13,8 +13,11 @@ import stack from './static/photos/stack.svg'
 
 
 
-export default function PreviousHome(){
+export default function Home(){
     const [clothes, setClothes] = useState([]);
+    const [categoryS, setCategory] = useState('all');
+
+    
     useEffect(() => {
         const fetchAllClothes = async() => {
             try{
@@ -28,6 +31,21 @@ export default function PreviousHome(){
         }
         fetchAllClothes();
     }, []);
+
+    // organizes the products into objects
+    const clothesByCategory = {};
+    clothes.forEach(cloth => {
+    const { category } = cloth;
+    if (!clothesByCategory[category]) {
+        clothesByCategory[category] = [];
+    }
+    clothesByCategory[category].push(cloth);
+    });
+
+    function handleCatChange(e){
+        console.log(e.target.value)
+        setCategory(e.target.value)
+    }
 
     return(
         <div className='home'>
@@ -67,7 +85,8 @@ export default function PreviousHome(){
                     </div>
                     <input type='text' name='search' placeholder='search' className='search-input'/>
                     <img src={filter} alt="login icon" className='icon'/>
-                    <select name='category' id='category' className='search-category' >
+                    <select name='category' id='category' className='search-category' onChange={handleCatChange}>
+                        <option value='all'>All Categories</option>
                         <option value='T-shirts'>T-shirts</option>
                         <option value='Trousers'>Trousers</option>
                         <option value='Hats'>Hats</option>
@@ -79,17 +98,46 @@ export default function PreviousHome(){
                         <option value='Shirts'>Shirts</option>
                     </select>
                 </div>
-                <div className='clothes'>
-                    {clothes.map((cloth) => (
-                        <div key={cloth.id} className='cloth'>
-                            <img src={cloth.picture} alt="image of cloth" className='cloth-pic'/>
-                            <div className='cloth-text'>
-                                <h3>{cloth.name}</h3>
-                                <p>KES: {cloth.price}</p>
+                
+                <div className="clothes">
+                    {categoryS === 'all' ? (
+                        Object.keys(clothesByCategory).map(category => (
+                        <div key={category} className="category">
+                            <h2>{category}</h2>
+                            <div className="categorical-clothes">
+                                {clothesByCategory[category].map(cloth => (
+                                    <div key={cloth.id} className="cloth">
+                                        <img src={cloth.picture} alt="image of cloth" className="cloth-pic" />
+                                        <div className="cloth-text">
+                                            <h3>{cloth.name}</h3>
+                                            <p>KES: {cloth.price}</p>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
-                    ))}
-                </div>
+                        ))
+                    ) : (
+                        <div className="categorical-clothes">
+                            {Array.isArray(clothesByCategory[categoryS]) && clothesByCategory[categoryS].length > 0 ? (
+                                clothesByCategory[categoryS].map(cloth => (
+                                <div key={cloth.id} className="cloth">
+                                    <img src={cloth.picture} alt="image of cloth" className="cloth-pic" />
+                                    <div className="cloth-text">
+                                        <h3>{cloth.name}</h3>
+                                        <p>KES: {cloth.price}</p>
+                                    </div>
+                                </div>
+                                ))
+                            ) : (
+                                <h2>No items found in this category</h2>
+                            )}
+                        </div>
+
+                    )}
+                    </div>
+
+                
             </div>
             
         </div>
