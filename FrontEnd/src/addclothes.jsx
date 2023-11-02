@@ -1,8 +1,13 @@
 import axios from 'axios';
 import React from 'react';
 import {useState} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import './static/addclothes.css'
+import cartLogo from './static/photos/cart.svg';
+import login from './static/photos/login.svg';
+import home from './static/photos/home.svg';
+import shop from './static/photos/gift.svg';
+import add from './static/photos/plus.svg';
 
 export default function AddClothes (){
     const[form, setForm] = useState({
@@ -29,7 +34,6 @@ export default function AddClothes (){
         formData.forEach((value, key) => {
           submission[key] = value === '' ? null : value;
         });
-        console.log(submission)
         try {
           await axios.post('http://localhost:3000/addClothing', submission);
           navigate('/');
@@ -50,13 +54,46 @@ export default function AddClothes (){
       
     
     return(
-        <div className='formPage'>
+        <div className='add-clothes'>
+          <div className='side-bar'>
+              <div className='company-foo'>
+                  <h2>Cloth shop</h2>
+                  <img
+                      src='https://freesvg.org/storage/img/thumb/doctormo_Dring_and_Drang.png'
+                      alt='logo of cloth company'
+                      className='logo'
+                  />
+              </div>
+              <div className='nav-links'>
+                <div className='link'>
+                    <img src={login} alt='login icon' className='icon' />
+                    <h3>Login</h3>
+                </div>
+                <div className='link'>
+                    <img src={home} alt='home icon' className='icon' />
+                    <h3>Home</h3>
+                </div>
+                <div className='link' onClick={()=>navigate('/')}>
+                    <img src={shop} alt='shop icon' className='icon' />
+                    <h3>Shop</h3>
+                </div>
+                <div className='link' onClick={()=>navigate('/cart')}>
+                    <img src={cartLogo} alt='Cart Icon' className='icon' />
+                    <h3>Cart</h3>
+                </div>
+                <div className='link' onClick={()=>navigate('/addClothes')}>
+                    <img src={add} alt='Add Clothes' className='icon' />
+                    <h3>Add Clothes</h3>
+                </div>
+              </div>
+          </div>
+          <div className='formPage'>
             <h1>ADD NEW Cloth</h1>
             <form onSubmit={handleClick} >
                 <label className='formLabel' htmlFor="name">
                 Input cloth name : 
                     <input type='text' name='name' id='name'
-                             placeholder='Cloth name' />
+                            placeholder='Cloth name' />
                 </label>
                 <label className='formLabel' htmlFor="category">Select cloth category:</label>
                 <select name='category' id='category' >
@@ -73,27 +110,27 @@ export default function AddClothes (){
                 <label className='formLabel' htmlFor="brand">
                     Input cloth brand : 
                     <input type='text' name='brand' id='brand'
-                             placeholder='Cloth brand' />
+                            placeholder='Cloth brand' />
                 </label>
                 <label className='formLabel' htmlFor="store">
                     Input cloth store : 
                     <input type='text' name='store' id='store'
-                             placeholder='Cloth store' />
+                            placeholder='Cloth store' />
                 </label>
                 <label className='formLabel' htmlFor="size">
                     Input cloth size : 
                     <input type='text' name='size' id='size'
-                             placeholder='Cloth size' />
+                            placeholder='Cloth size' />
                 </label>
                 <label className='formLabel' htmlFor="picture">
                     Input cloth picture : 
                     <input type='text' name='picture' id='picture'
-                             placeholder='Link to picture' />
+                            placeholder='Link to picture' />
                 </label>
                 <label className='formLabel' htmlFor="price">
                     Input cloth price : 
                     <input type='number' name='price' id='price'
-                             placeholder='Cloth price' />
+                            placeholder='Cloth price' />
                 </label>
                 <button type='submit' >Submit</button>
             </form>
@@ -101,6 +138,8 @@ export default function AddClothes (){
             {error && <p>{error.message || 'Something went wrong'}</p>}
 
 
+          </div>
         </div>
+        
     )
 }

@@ -1,5 +1,6 @@
 
 .formPage {
+    grid-column: 2 / 5;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -67,4 +68,8 @@ button:hover {
 
 .error {
     color: red;
+}
+.add-clothes { 
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 }
