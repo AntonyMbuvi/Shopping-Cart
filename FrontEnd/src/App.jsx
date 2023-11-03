@@ -5,6 +5,7 @@ import Shop from './Shop';
 import Cloth from './cloth';
 import { useState } from 'react';
 import Cart from './cart';
+import Home from './home';
 
 function App() {
   const [cart, addCart] = useState([])
@@ -12,6 +13,7 @@ function App() {
     <>
     <BrowserRouter>
         <Routes>
+          <Route path="/home" element={<Home  />} />
           <Route path="/" element={<Shop  />} />
           <Route path="/addClothes" element={<AddClothes  />} />
           <Route path="/addCart/:id" element={<Cloth cart={cart} addCart={addCart}/>} />

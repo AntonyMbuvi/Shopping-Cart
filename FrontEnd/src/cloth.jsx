@@ -73,7 +73,7 @@ export default function Cloth ({cart, addCart}){
                         <img src={login} alt='login icon' className='icon' />
                         <h3>Login</h3>
                     </div>
-                    <div className='link'>
+                    <div className='link' onClick={()=>navigate('/home')}>
                         <img src={home} alt='home icon' className='icon' />
                         <h3>Home</h3>
                     </div>

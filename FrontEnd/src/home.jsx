@@ -1,30 +1,28 @@
-import './static/cart.css';
+import './static/home.css';
 import add from './static/photos/plus.svg';
 import cartLogo from './static/photos/cart.svg';
 import login from './static/photos/login.svg';
 import home from './static/photos/home.svg';
 import shop from './static/photos/gift.svg';
 import { useNavigate } from 'react-router-dom';
+import {useState, useEffect} from 'react';
 
 
-export default function Cart(props) {
-    const { cart } = props;
-    const { addCart } = props;
-    let sum = 0;
+export default function Home(){
     const navigate = useNavigate()
+    const [slideIndex, setSlideIndex] = useState(0);
+    const images = [add, login, home]; 
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+        setSlideIndex((prevIndex) => (prevIndex + 1) % images.length);
+        }, 5000); // Change image every 5 seconds
 
-    if (cart && Array.isArray(cart)) {
-        cart.forEach(cloth => {
-            sum += cloth.price;
-        });
-    }
-    function removeItem(id){
-        const updatedCart = cart.filter(item => item.id !== id);
-        addCart(updatedCart);
-    }
+        return () => clearInterval(interval);
+    }, [images.length]);
+
     return (
-        <div className='cart-page'>
+        <div className="homePage">
             <div className='side-bar'>
                 <div className='company-foo'>
                     <h2>Cloth shop</h2>
@@ -57,31 +55,15 @@ export default function Cart(props) {
                     </div>
                 </div>
             </div>
-            <div className='cart-div'>
-                <h2 className='cart-header'>The cart is below with the following items</h2>
-                {cart && Array.isArray(cart) && cart.map((cloth) => (
-                    <div key={cloth.id} className="cart-item">
-                        <div>
-                            <img src={cloth.picture} alt="image of cloth" className="cloth-pic" />
-                        </div>
-                        <div>
-                            <p>{cloth.name}</p>
-                        </div>
-                        <div>
-                            <p>Price: {cloth.price}</p>
-                        </div>
-                        <div>
-                            <button onClick={() => removeItem(cloth.id)}>Remove item</button>
-                        </div>
-
+            <div className="mainBar">
+                <div className="slideshow-container">
+                {images.map((image, index) => (
+                    <div key={index} className={index === slideIndex ? 'mySlides fade' : 'mySlides'}>
+                    <img src={image} style={{ width: '100%' }} alt={`Slide ${index + 1}`} className='icon'/>
                     </div>
                 ))}
-                <div className='cart-price'>
-                    <h2 >Total Price:</h2>
-                    <h2 > {sum}</h2>
-                    <button className='checkout'>CHECKOUT</button>
                 </div>
-            </div>          
+            </div>
         </div>
     )
 }

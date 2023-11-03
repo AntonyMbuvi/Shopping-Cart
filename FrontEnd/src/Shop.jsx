@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './static/home.css';
+import './static/shop.css';
 import add from './static/photos/plus.svg';
 import cartLogo from './static/photos/cart.svg';
 import login from './static/photos/login.svg';
@@ -62,7 +62,7 @@ export default function Shop() {
                         <img src={login} alt='login icon' className='icon' />
                         <h3>Login</h3>
                     </div>
-                    <div className='link'>
+                    <div className='link' onClick={()=>navigate('/home')}>
                         <img src={home} alt='home icon' className='icon' />
                         <h3>Home</h3>
                     </div>
