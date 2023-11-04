@@ -40,3 +40,15 @@ button {
     width: fit-content;
     
 }
+.paxInput {
+    background-color: black;
+    border: gold 1px solid;
+    width: 35px;
+    color: aliceblue;
+}
+.priceMambos {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    gap: 10px;
+}
