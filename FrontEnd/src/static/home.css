@@ -8,4 +8,49 @@
 
 .mainBar {
     grid-column: 2 / 5;
+    padding: 20px;
+}
+.slidingPhotos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: 90vh;
+}
+.leftImage {
+    grid-column: 1 / 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.center {
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.rightImage {
+    grid-column: 3 / 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+}
+.gifDiv {
+    padding: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.express {
+    font-family: cursive;
+}
+.moreClothes {
+    padding: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.allclothess{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

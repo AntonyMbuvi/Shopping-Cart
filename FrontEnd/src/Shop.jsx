@@ -18,7 +18,7 @@ export default function Shop() {
     const [filterText, setFilterText] = useState('');
     const navigate = useNavigate()
 
-    
+
 
     useEffect(() => {
         const fetchAllClothes = async () => {
